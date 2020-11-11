@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="subscriberViewModel"
+            type="com.timurpehlivan.practiceapp.SubscriberViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/subscriberNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_large"
+            android:hint="@string/subscriber_name_hint_text"
+            android:inputType="textPersonName"
+            android:text="@={subscriberViewModel.inputName}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/subscriberEmailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_large"
+            android:hint="@string/subscriber_email_hint_text"
+            android:inputType="textEmailAddress"
+            android:text="@={subscriberViewModel.inputEmail}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subscriberNameEditText" />
+
+        <LinearLayout
+            android:id="@+id/buttonLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_large"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subscriberEmailEditText">
+
+            <Button
+                android:id="@+id/buttonSaveOrUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/button_height"
+                android:layout_weight="1"
+                android:onClick="@{()->subscriberViewModel.saveOrUpdate()}"
+                android:text="@={subscriberViewModel.buttonSaveOrUpdateText}"
+                android:textSize="@dimen/font_large"
+                tools:text="Save" />
+
+            <Button
+                android:id="@+id/buttonClearAllOrDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/button_height"
+                android:layout_weight="1"
+                android:onClick="@{()->subscriberViewModel.clearAllOrDelete()}"
+                android:text="@={subscriberViewModel.buttonClearAllOrDeleteText}"
+                android:textSize="@dimen/font_large"
+                tools:text="Delete" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/subscriberRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/spacing_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonLinearLayout"
+            tools:itemCount="3"
+            tools:listitem="@layout/list_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">PracticeApp</string>
+    <string name="subscriber_name_hint_text">Subscriber\'s name</string>
+  <string name="subscriber_email_hint_text">Subscriber\'s email</string>
+</resources>
